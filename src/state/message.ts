@@ -328,28 +328,27 @@ export const defaultMessage: Message = {
         {
           id: 472281785,
           name: "RRP Price",
-          value: "~~£34.99~~",
+          value: "**~~£34.99~~**",
           inline: true,
         },
         {
           id: 472281785,
           name: "Discount Price",
-          value: "£7.99",
+          value: "**£7.99**",
           inline: true,
         },
         {
           id: 472281785,
           name: "Metacritic Score",
-          value: "84/100",
+          value: "**84/100**",
           inline: true,
         },
         {
           id: 472281785,
           name: "Description",
           value:
-            "Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features like remastered art and effects, volumetric god rays, dynamic depth of field, screen-space reflections, and more." +
-            "Skyrim Special Edition also brings the power of Bethesda Game Studios Creations to PC and consoles. New quests, environments, characters, dialogue, armor, weapons and more – with Creations, there are no limits to what you can experience.",
-          inline: false,
+            "Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. \n \n"+
+            "The Special Edition includes the critically acclaimed game and add-ons with all-new features like remastered art and effects, volumetric god rays, dynamic depth of field.",
         },
       ],
       url: "https://www.greenmangaming.com/games/the-elder-scrolls-v-skyrim-special-edition/",
