@@ -7,7 +7,7 @@ export default ({ mode }) => {
 
   return defineConfig({
     plugins: [react()],
-    base: env.VITE_DISCORD_ACTIVITY === "true" ? undefined : "/app",
+    base: env.VITE_DISCORD_ACTIVITY === "true" ? undefined : "./",
     server: {
       proxy: {
         "/api": {
@@ -17,7 +17,7 @@ export default ({ mode }) => {
           target: "http://127.0.0.1:8080",
         },
       },
-      base: "/app/",
+      base: "./",
     },
     build: {
       rollupOptions: {
