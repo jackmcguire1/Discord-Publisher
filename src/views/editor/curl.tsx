@@ -21,6 +21,11 @@ type MessageEmbedImage = {
   url: string;
 };
 
+type MessageEmbedFooter = {
+    text: string;
+    icon_url: string;
+}
+
 type MessageEmbed = {
   url?: string;
   title?: string;
@@ -28,6 +33,8 @@ type MessageEmbed = {
   color?: number;
   image?: MessageEmbedImage;
   fields?: MessageEmbedField[];
+  footer?: MessageEmbedFooter;
+  timestamp?: string;
 };
 
 type WebhookParams = {
@@ -68,7 +75,9 @@ export default function CurlView() {
       title: embed.title,
       description: embed.description,
       color: embed.color,
-      image: embed.image ? { url: embed.image.url } : undefined,
+        image: embed.image ? { url: embed.image.url } : undefined,
+        footer: embed.footer ? { text: embed.footer.text, icon_url: embed.footer.icon_url } : undefined,
+      timestamp: embed.timestamp,
       fields: embed.fields
         ? embed.fields.map((f: any) => ({
             name: f.name,

@@ -326,14 +326,14 @@ export const defaultMessage: Message = {
           id: 472281785,
           name: "RRP Price",
           value:
-            "~~$5.99~~",
+            "~~£5.99~~",
           inline: true,
         },
         {
           id: 472281785,
           name: "Discount Price",
           value:
-            "$1.99",
+            "£1.99",
           inline: true,
         },
         {
