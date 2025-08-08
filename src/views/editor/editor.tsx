@@ -51,9 +51,9 @@ export default function EditorView() {
               <EditorMenuBar />
               <EditorWebhookFields />
               {!componentsV2Enabled && <EditorMessageContentField />}
-              <EditorAttachments />
+
               {!componentsV2Enabled && <EditorEmbeds />}
-              <EditorComponents defaultCollapsed={!componentsV2Enabled} />
+
             </div>
           </div>
           <div className="hidden lg:block w-1/2 h-full bg-dark-4 lg:border-l-2 border-dark-3 px-5 py-2 overflow-y-auto no-scrollbar">
