@@ -3,7 +3,6 @@ import GuildOrUserSelect from "../components/GuildOrUserSelect";
 import { useSavedMessagesQuery, useUserQuery } from "../api/queries";
 import EditorInput from "../components/EditorInput";
 import clsx from "clsx";
-import LoginSuggest from "../components/LoginSuggest";
 import { useCreatedSavedMessageMutation } from "../api/mutations";
 import { useCurrentMessageStore } from "../state/message";
 import MessageExportImport from "../components/MessageExportImport";
@@ -158,7 +157,6 @@ export default function MessagesView() {
           </>
         ) : (
           <div className="pb-10">
-            <LoginSuggest alwaysExpanded={true} />
           </div>
         )}
       </div>

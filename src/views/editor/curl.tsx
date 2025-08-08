@@ -26,6 +26,12 @@ type MessageEmbedFooter = {
     icon_url: string;
 }
 
+type MessageEmbedAuthor = {
+    name: string;
+    icon_url: string;
+    url: string;
+}
+
 type MessageEmbed = {
   url?: string;
   title?: string;
@@ -35,6 +41,7 @@ type MessageEmbed = {
   fields?: MessageEmbedField[];
   footer?: MessageEmbedFooter;
   timestamp?: string;
+  author?: MessageEmbedAuthor;
 };
 
 type WebhookParams = {
@@ -49,55 +56,51 @@ type WebhookParams = {
 
 export default function CurlView() {
 
-  const navigate = useNavigate();
-  const createToast = useToasts((s) => s.create);
+    const navigate = useNavigate();
+    const createToast = useToasts((s) => s.create);
 
-  const msg = useCurrentMessageStore();
-  const webhookUrl = useSendSettingsStore((s) => s.webhookUrl);
+    const msg = useCurrentMessageStore();
+    const webhookUrl = useSendSettingsStore((s) => s.webhookUrl);
     
-  const [raw, setRaw] = useState("{}");
+    const [raw, setRaw] = useState("{}");
 
     useEffect(() => {
-      const webhook = webhookUrl || "https://steve.com";
-      const payload = transformRawJson(msg);
-      const curlCmd = generateCurl(webhook, payload);
-    setRaw(curlCmd);
-  }, [msg]);
+        const webhook = webhookUrl || "https://steve.com";
+        const payload = transformRawJson(msg);
+        const curlCmd = generateCurl(webhook, payload);
+        setRaw(curlCmd);
+    }, [msg]);
 
     function transformRawJson(raw: any): WebhookParams {
-  return {
-    content: raw.content || "",
-    username: raw.username || "",
-    avatar_url: raw.avatar_url || "",
-    tts: !!raw.tts,
-    embeds: (raw.embeds || []).map((embed: any) => ({
-      url: embed.url,
-      title: embed.title,
-      description: embed.description,
-      color: embed.color,
-        image: embed.image ? { url: embed.image.url } : undefined,
-        footer: embed.footer ? { text: embed.footer.text, icon_url: embed.footer.icon_url } : undefined,
-      timestamp: embed.timestamp,
-      fields: embed.fields
-        ? embed.fields.map((f: any) => ({
-            name: f.name,
-            value: f.value,
-            inline: f.inline,
-          }))
-        : [],
-    })),
-    components: raw.components || [],
-    flags: raw.flags || 0,
-  };
+        return {
+            content: raw.content || "",
+            username: raw.username || "",
+            avatar_url: raw.avatar_url || "",
+            tts: !!raw.tts,
+            embeds: (raw.embeds || []).map((embed: any) => ({
+                url: embed.url,
+                title: embed.title,
+                description: embed.description,
+                color: embed.color,
+                image: embed.image ? { url: embed.image.url } : undefined,
+                footer: embed.footer ? { text: embed.footer.text, icon_url: embed.footer.icon_url } : undefined,
+                timestamp: embed.timestamp,
+                author: embed.author ? { url: embed.author.url, name: embed.author.name, icon_url: embed.author.icon_url } : undefined,
+                fields: embed.fields
+                    ? embed.fields.map((f: any) => ({
+                        name: f.name,
+                        value: f.value,
+                        inline: f.inline,
+                    }))
+                    : [],
+            })),
+            components: raw.components || [],
+            flags: raw.flags || 0,
+        };
     }
     
   function save() {
     try {
-    //   const data = JSON.parse(raw);
-    //   const parsedData = parseMessageWithAction(data);
-
-    //   msg.replace(parsedData);
-    //   navigate("/editor");
     } catch (e) {
       console.error(e);
       createToast({

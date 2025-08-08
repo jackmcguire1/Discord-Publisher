@@ -214,7 +214,6 @@ export default function SendMenuChannel() {
         </div>
       </div>
     </div>
-  ) : (
-    <LoginSuggest />
+  ) : (<div></div>
   );
 }
