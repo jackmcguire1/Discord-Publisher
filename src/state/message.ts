@@ -307,17 +307,20 @@ export interface MessageStore extends Message {
 }
 
 export const defaultMessage: Message = {
-  content:
-    '',
+  content: "",
   tts: false,
   username: "Green Man Gaming",
-  avatar_url: "https://cdn.discordapp.com/icons/932963489075568660/4f6c00c27cd8a4383e172ace9b5fb729.png?size=160&quality=lossless",
+  avatar_url:
+    "https://cdn.discordapp.com/icons/932963489075568660/4f6c00c27cd8a4383e172ace9b5fb729.png?size=160&quality=lossless",
   embeds: [
     {
       id: 10674342,
       title: "The Elder Scrolls V: Skyrim Special Edition",
-      description:"",
+      description: "",
       image: {
+        url: "https://images.greenmangaming.com/6eb1c068b9f345df979de4b694d85ba4/8e3a20e78d3243c3a8435292ac1f448c.jpg",
+      },
+      thumbnail: {
         url: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg?t=1753715778",
       },
       color: 4713220,
@@ -325,27 +328,31 @@ export const defaultMessage: Message = {
         {
           id: 472281785,
           name: "RRP Price",
-          value:
-            "~~£5.99~~",
+          value: "~~£34.99~~",
           inline: true,
         },
         {
           id: 472281785,
           name: "Discount Price",
-          value:
-            "£1.99",
+          value: "£7.99",
+          inline: true,
+        },
+        {
+          id: 472281785,
+          name: "Metacritic Score",
+          value: "84/100",
           inline: true,
         },
         {
           id: 472281785,
           name: "Description",
           value:
-            "Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features like remastered art and effects, volumetric god rays, dynamic depth of field, screen-space reflections, and more." + 
+            "Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features like remastered art and effects, volumetric god rays, dynamic depth of field, screen-space reflections, and more." +
             "Skyrim Special Edition also brings the power of Bethesda Game Studios Creations to PC and consoles. New quests, environments, characters, dialogue, armor, weapons and more – with Creations, there are no limits to what you can experience.",
           inline: false,
         },
       ],
-      url: "https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/",
+      url: "https://www.greenmangaming.com/games/the-elder-scrolls-v-skyrim-special-edition/",
     },
   ],
   components: [],
