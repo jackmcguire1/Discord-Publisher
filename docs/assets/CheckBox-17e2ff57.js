@@ -1,1 +1,0 @@
-import{j as r,f as e,a0 as n}from"./index-be7f8796.js";function i({checked:o,onChange:s,height:t}){return r.jsx("div",{className:e("bg-dark-2 rounded cursor-pointer p-1.5 text-white",t===10?"h-10 w-10":"w-9 h-9"),role:"button",onClick:()=>s(!o),children:o&&r.jsx(n,{})})}export{i as C};
