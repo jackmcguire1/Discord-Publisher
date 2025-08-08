@@ -22,15 +22,15 @@ type MessageEmbedImage = {
 };
 
 type MessageEmbedFooter = {
-    text: string;
-    icon_url: string;
-}
+  text: string;
+  icon_url: string;
+};
 
 type MessageEmbedAuthor = {
-    name: string;
-    icon_url: string;
-    url: string;
-}
+  name: string;
+  icon_url: string;
+  url: string;
+};
 
 type MessageEmbed = {
   url?: string;
@@ -56,62 +56,69 @@ type WebhookParams = {
 };
 
 export default function CurlView() {
+  const navigate = useNavigate();
+  const createToast = useToasts((s) => s.create);
 
-    const navigate = useNavigate();
-    const createToast = useToasts((s) => s.create);
+  const msg = useCurrentMessageStore();
+  const webhookUrl = useSendSettingsStore((s) => s.webhookUrl);
 
-    const msg = useCurrentMessageStore();
-    const webhookUrl = useSendSettingsStore((s) => s.webhookUrl);
-    
-    const [raw, setRaw] = useState("{}");
+  const [raw, setRaw] = useState("{}");
 
-    useEffect(() => {
-        const webhook = webhookUrl || "https://steve.com";
-        const payload = transformRawJson(msg);
-        const curlCmd = generateCurl(webhook, payload);
-        setRaw(curlCmd);
-    }, [msg]);
+  useEffect(() => {
+    const webhook = webhookUrl || "https://steve.com";
+    const payload = transformRawJson(msg);
+    const curlCmd = generateCurl(webhook, payload);
+    setRaw(curlCmd);
+  }, [msg]);
 
-    function transformRawJson(raw: any): WebhookParams {
-        return {
-            content: raw.content || "",
-            username: raw.username || "",
-            avatar_url: raw.avatar_url || "",
-            tts: !!raw.tts,
-            embeds: (raw.embeds || []).map((embed: any) => ({
-                url: embed.url,
-                title: embed.title,
-                description: embed.description,
-                color: embed.color,
-                image: embed.image ? { url: embed.image.url } : undefined,
-                footer: embed.footer ? { text: embed.footer.text, icon_url: embed.footer.icon_url } : undefined,
-                timestamp: embed.timestamp,
-                author: embed.author ? { url: embed.author.url, name: embed.author.name, icon_url: embed.author.icon_url } : undefined,
-                thumbnail: embed.thumbnail ? { url: embed.thumbnail.url } : undefined,
-                fields: embed.fields
-                    ? embed.fields.map((f: any) => ({
-                        name: f.name,
-                        value: f.value,
-                        inline: f.inline,
-                    }))
-                    : [],
-            })),
-            components: raw.components || [],
-            flags: raw.flags || 0,
-        };
-    }
-    
-    function generateCurl(webhookUrl: string, payload: WebhookParams): string {
-  const jsonPayload = JSON.stringify(payload)
-    .replace(/\\/g, "\\\\") // escape backslashes
-    .replace(/"/g, '\\"');  // escape quotes for shell
-  return `curl -X POST "${webhookUrl}" \
+  function transformRawJson(raw: any): WebhookParams {
+    return {
+      content: raw.content || "",
+      username: raw.username || "",
+      avatar_url: raw.avatar_url || "",
+      tts: !!raw.tts,
+      embeds: (raw.embeds || []).map((embed: any) => ({
+        url: embed.url,
+        title: embed.title,
+        description: embed.description,
+        color: embed.color,
+        image: embed.image ? { url: embed.image.url } : undefined,
+        footer: embed.footer
+          ? { text: embed.footer.text, icon_url: embed.footer.icon_url }
+          : undefined,
+        timestamp: embed.timestamp,
+        author: embed.author
+          ? {
+              url: embed.author.url,
+              name: embed.author.name,
+              icon_url: embed.author.icon_url,
+            }
+          : undefined,
+        thumbnail: embed.thumbnail ? { url: embed.thumbnail.url } : undefined,
+        fields: embed.fields
+          ? embed.fields.map((f: any) => ({
+              name: f.name,
+              value: f.value,
+              inline: f.inline,
+            }))
+          : [],
+      })),
+      components: raw.components || [],
+      flags: raw.flags || 0,
+    };
+  }
+
+  function generateCurl(webhookUrl: string, payload: WebhookParams): string {
+    const jsonPayload = JSON.stringify(payload)
+      .replace(/\\/g, "\\\\") // escape backslashes
+      .replace(/"/g, '\\"'); // escape quotes for shell
+    return `curl -X POST "${webhookUrl}" \
 -H "Content-Type: application/json" \
 -d "${jsonPayload}"`;
-}
+  }
 
   return (
-    <Modal height="full" onClose={() => navigate("/editor")}>
+    <Modal onClose={() => navigate("/editor")}>
       <div className="h-full flex flex-col p-1.5 md:p-3">
         <ReactCodeMirror
           className="flex-1 rounded overflow-hidden"
@@ -123,11 +130,17 @@ export default function CurlView() {
             foldGutter: false,
             indentOnInput: true,
           }}
-          extensions={[lintGutter(), json(), linter(jsonParseLinter())]}
           theme={githubDark}
           onChange={(v) => setRaw(v)}
         />
         <div className="mt-3 flex justify-end space-x-2">
+          <button
+            className="border-2 border-dark-7 hover:bg-dark-5 px-3 py-2 rounded text-white"
+            onClick={() => navigator.clipboard.writeText(raw)}
+          >
+            Copy to Clipboard
+          </button>
+
           <button
             className="border-2 border-dark-7 hover:bg-dark-5 px-3 py-2 rounded text-white"
             onClick={() => navigate("/editor")}

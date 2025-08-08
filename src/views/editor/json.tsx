@@ -59,6 +59,12 @@ export default function JsonView() {
         <div className="mt-3 flex justify-end space-x-2">
           <button
             className="border-2 border-dark-7 hover:bg-dark-5 px-3 py-2 rounded text-white"
+            onClick={() => navigator.clipboard.writeText(raw)}
+          >
+            Copy to Clipboard
+          </button>
+          <button
+            className="border-2 border-dark-7 hover:bg-dark-5 px-3 py-2 rounded text-white"
             onClick={() => navigate("/editor")}
           >
             Cancel
