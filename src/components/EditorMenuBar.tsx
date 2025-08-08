@@ -2,6 +2,7 @@ import {
   TrashIcon,
   CodeBracketSquareIcon,
   SparklesIcon,
+  PencilSquareIcon,
   LinkIcon,
 } from "@heroicons/react/20/solid";
 import { usePremiumGuildFeatures } from "../util/premium";
@@ -26,6 +27,9 @@ export default function EditorMenuBar() {
           </EditorIconButton>
           <EditorIconButton label="Curl CMD" href="/editor/curl">
             <CodeBracketSquareIcon />
+          </EditorIconButton>
+          <EditorIconButton label="Send Message" href="/editor/sendmessage">
+            <PencilSquareIcon />
           </EditorIconButton>
         </div>
 

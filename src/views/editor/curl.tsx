@@ -101,19 +101,6 @@ export default function CurlView() {
         };
     }
     
-  function save() {
-    try {
-    } catch (e) {
-      console.error(e);
-      createToast({
-        type: "error",
-        title: "Failed to parse message",
-        message:
-          "The message you entered is not a valid Discord webhook message. Please check for mistakes in your message and try again.",
-      });
-    }
-  }
-    
     function generateCurl(webhookUrl: string, payload: WebhookParams): string {
   const jsonPayload = JSON.stringify(payload)
     .replace(/\\/g, "\\\\") // escape backslashes
@@ -146,12 +133,6 @@ export default function CurlView() {
             onClick={() => navigate("/editor")}
           >
             Cancel
-          </button>
-          <button
-            className="bg-blurple hover:bg-blurple-dark px-3 py-2 rounded text-white"
-            onClick={save}
-          >
-            Save
           </button>
         </div>
       </div>

@@ -13,6 +13,7 @@ import ConfirmOnExit from "./components/ConfirmOnExit";
 
 const LazyJsonView = lazy(() => import("./views/editor/json"));
 const LazyCurlView = lazy(() => import("./views/editor/curl"));
+const LazySendMessageView = lazy(() => import("./views/editor/sendmessage"));
 
 const LazyAssistantView = lazy(() => import("./views/editor/assisstant"));
 const LazyMessagesView = lazy(() => import("./views/messages"));
@@ -57,7 +58,14 @@ function App() {
                 </SuspendedView>
               }
             />
-
+            <Route
+              path="sendmessage"
+              element={
+                <SuspendedView>
+                  <LazySendMessageView />
+                </SuspendedView>
+              }
+            />
 
           </Route>
 
