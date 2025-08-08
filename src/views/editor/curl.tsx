@@ -42,6 +42,7 @@ type MessageEmbed = {
   footer?: MessageEmbedFooter;
   timestamp?: string;
   author?: MessageEmbedAuthor;
+  thumbnail?: MessageEmbedImage;
 };
 
 type WebhookParams = {
@@ -86,6 +87,7 @@ export default function CurlView() {
                 footer: embed.footer ? { text: embed.footer.text, icon_url: embed.footer.icon_url } : undefined,
                 timestamp: embed.timestamp,
                 author: embed.author ? { url: embed.author.url, name: embed.author.name, icon_url: embed.author.icon_url } : undefined,
+                thumbnail: embed.thumbnail ? { url: embed.thumbnail.url } : undefined,
                 fields: embed.fields
                     ? embed.fields.map((f: any) => ({
                         name: f.name,
