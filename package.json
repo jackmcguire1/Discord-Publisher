@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@codemirror/lang-json": "^6.0.1",
-    "@codemirror/lint": "^6.2.0",
+    "@codemirror/lint": "^6.8.5",
     "@discord/embedded-app-sdk": "^1.0.2",
     "@emoji-mart/react": "^1.1.1",
     "@formkit/auto-animate": "^1.0.0-beta.6",
