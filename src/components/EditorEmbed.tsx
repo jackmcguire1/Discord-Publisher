@@ -60,7 +60,7 @@ export default function EditorEmbed({ embedIndex, embedId }: Props) {
         id={`embeds.${embedId}`}
         validationPathPrefix={`embeds.${embedIndex}`}
         size="large"
-        defaultCollapsed={true}
+        defaultCollapsed={embedIndex !== 0}
         extra={
           embedName && (
             <div className="text-gray-500 truncate flex space-x-2 pl-2">
