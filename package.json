@@ -43,7 +43,7 @@
     "simple-markdown": "^0.7.3",
     "tailwindcss": "^3.3.1",
     "vaul": "^0.7.0",
-    "zod": "^3.21.4",
+    "zod": "^4.0.17",
     "zundo": "^2.1.0",
     "zustand": "^4.3.7"
   },
